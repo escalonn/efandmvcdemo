@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContainerizedWebApp", "ContainerizedWebApp\ContainerizedWebApp.csproj", "{C8B207CA-C80B-480E-9395-206C1C4D4705}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainerizedDataAccess", "ContainerizedDataAccess\ContainerizedDataAccess.csproj", "{59E035C6-0752-4E72-8B54-7FF0F2972395}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8B207CA-C80B-480E-9395-206C1C4D4705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B207CA-C80B-480E-9395-206C1C4D4705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B207CA-C80B-480E-9395-206C1C4D4705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B207CA-C80B-480E-9395-206C1C4D4705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E035C6-0752-4E72-8B54-7FF0F2972395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E035C6-0752-4E72-8B54-7FF0F2972395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E035C6-0752-4E72-8B54-7FF0F2972395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E035C6-0752-4E72-8B54-7FF0F2972395}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE7793D8-8FE0-44CE-854E-B2A66033906A}
+	EndGlobalSection
+EndGlobal
