@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ContainerizedDataAccess.Entities;
@@ -7,16 +8,19 @@ using ContainerizedWebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ContainerizedWebApp.Controllers
 {
     public class ItemController : Controller
     {
         private readonly mvcappdbContext _context;
+        private readonly ILogger<ItemController> _logger;
 
-        public ItemController(mvcappdbContext context)
+        public ItemController(mvcappdbContext context, ILogger<ItemController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Item
@@ -28,9 +32,18 @@ namespace ContainerizedWebApp.Controllers
                 TempData.Keep("username");
             }
 
-            Account myAccount = _context.Account
-                .Include(a => a.Item) // 
-                .First(a => a.Name == "Nick");
+            Account myAccount;
+            try
+            {
+                myAccount = _context.Account
+                    .Include(a => a.Item) // 
+                    .First(a => a.Name == "Nick");
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(ex, "Exception while retrieving account {accountName} from DB", "Nick");
+                return View("DatabaseError");
+            }
 
             IEnumerable<ItemViewModel> model = myAccount.Item.Select(i => new ItemViewModel
             {
@@ -83,6 +96,9 @@ namespace ContainerizedWebApp.Controllers
 
                 _context.SaveChanges(); // applies all changes so far as a transaction to the DB.
                 // (also wires up any )
+
+                _logger.LogInformation("Item {itemName} with ID {itemId} created for account {accountId}",
+                    item.Name, item.Id, myAccount.Id);
 
                 TempData["username"] = item.Name;
 
